@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TOP | Form-Validator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="app.js" defer charset="utf-8"></script>
+</head>
+<body>
+<main>
+  <header class="header">
+    <div class="mode-toggle-container">
+      <button class="circle-btn" onclick='toggleBtn()'><div class="circle"></div></button>
+      <p>Toggle</p>
+    </div>
+  </header>
+  <div class="form-container-wrapper">
+    <div class="form-container">
+      <div class="form-container-header">
+        <h2>Sign Up Below...</h2>
+        <span class='material-icons'>home</span>
+      </div>
+      <div class="form-container-body">
+        <form novalidate id="user-data">
+          <div class="form-item-container">
+            <label for="name">Full Name</label>
+            <input type="text" name='name' id='name' placeholder="Please Enter Your Full Name" required>
+            <span class="material-icons input-icon" id='input-icon'>badge</span>
+            <span class="material-icons status"></span>
+            <p id='name-error'></p>
+          </div>
+          <div class="form-item-container">
+            <label for="email">Email</label>
+            <input type="email" name='email' id='email' placeholder="Please Enter Your Email" required minlength="8">
+            <span class="material-icons input-icon" id='input-icon'>email</span>
+            <span class="material-icons status"></span>
+            <p id='email-error'></p>
+          </div>
+          <div class="form-item-container">
+            <label for="country">Country</label>
+            <select class="country-select" name="country" id='country'>
+              <option value="Australia">Australia</option>
+              <option value="Japan">Japan</option>
+              <option value="England">England</option>
+            </select>
+          </div>
+          <div class="form-item-container">
+            <label for="zip">Zip Code</label>
+            <input type="text" name='zip' id='zip' placeholder="Zip Code?" pattern="[0-9]{4}">
+            <span class="material-icons input-icon" id='input-icon'>public</span>
+            <span class="material-icons status"></span>
+            <p id='zip-error'></p>
+          </div>
+          <div class="form-item-container">
+            <label for="password">Password</label>
+            <input type="password" name='password' id='password' placeholder="Please Enter Your Password">
+            <span class="material-icons input-icon" id='input-icon'>enhanced_encryption</span>
+            <span class="material-icons status"></span>
+            <span id='password-toggle' class="material-icons visibility">visibility</span>
+            <div class="password-strength-container"><span class="password-strength-bar"></span></div>
+            <ul>
+              <li>Password Must contain an Uppercase Letter</li>
+            </ul>
+            <p id='pass-error'></p>
+          </div>
+          <div class="form-item-container">
+            <label for="password-confirm">Confirm Password</label>
+            <input type="password" name='password-confirm' id='password-confirm' placeholder="Confirm Password">
+            <span class="material-icons input-icon" id='input-icon'>enhanced_encryption</span>
+            <span class="material-icons status"></span>
+            <span id='password-confirm-toggle' class="material-icons visibility">visibility</span>
+            <p id='passconfirm-error'></p>
+          </div>
+          <div class="form-container-footer">
+            <input type="submit" value="Sign Up" id='submit'>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
