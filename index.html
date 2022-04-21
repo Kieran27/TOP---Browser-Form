@@ -17,7 +17,7 @@
 <main>
   <header class="header">
     <div class="mode-toggle-container">
-      <button class="circle-btn" onclick='toggleBtn()'><div class="circle"></div></button>
+      <button id='display-toggle' class="circle-btn"><div class="circle"></div></button>
       <p>Toggle</p>
     </div>
   </header>
@@ -60,19 +60,22 @@
           </div>
           <div class="form-item-container">
             <label for="password">Password</label>
-            <input type="password" name='password' id='password' placeholder="Please Enter Your Password">
+            <input type="password" name='password' id='password' placeholder="Please Enter Your Password" required pattern='/^.{8,}$/'>
             <span class="material-icons input-icon" id='input-icon'>enhanced_encryption</span>
             <span class="material-icons status"></span>
             <span id='password-toggle' class="material-icons visibility">visibility</span>
-            <div class="password-strength-container"><span class="password-strength-bar"></span></div>
+            <div class="password-strength-container">
+              <span id='strength-bar' class="password-strength-bar"></span>
+            </div>
+            <span id='password-strength-text' class='password-strength-text'>No Password</span>
             <ul>
-              <li>Password Must contain an Uppercase Letter</li>
+              <li>* To improve password strength, try including an uppercase Letter</li>
             </ul>
             <p id='pass-error'></p>
           </div>
           <div class="form-item-container">
             <label for="password-confirm">Confirm Password</label>
-            <input type="password" name='password-confirm' id='password-confirm' placeholder="Confirm Password">
+            <input type="password" name='password-confirm' id='password-confirm' placeholder="Confirm Password" required>
             <span class="material-icons input-icon" id='input-icon'>enhanced_encryption</span>
             <span class="material-icons status"></span>
             <span id='password-confirm-toggle' class="material-icons visibility">visibility</span>
