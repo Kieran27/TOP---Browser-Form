@@ -17,8 +17,11 @@
 <main>
   <header class="header">
     <div class="mode-toggle-container">
-      <button id='display-toggle' class="circle-btn"><div class="circle"></div></button>
-      <p>Toggle</p>
+      <button id='display-toggle' class="circle-btn">
+        <span class="material-icons dark-icon">light_mode</span>
+        <span class="material-icons light-icon">dark_mode</span>
+        <div class="circle"></div>
+      </button>
     </div>
   </header>
   <div class="form-container-wrapper">
@@ -41,7 +44,7 @@
             <input type="email" name='email' id='email' placeholder="Please Enter Your Email" required minlength="8">
             <span class="material-icons input-icon" id='input-icon'>email</span>
             <span class="material-icons status"></span>
-            <p id='email-error'></p>
+            <p class='err-msg' id='email-error'></p>
           </div>
           <div class="form-item-container">
             <label for="country">Country</label>
@@ -56,7 +59,7 @@
             <input type="text" name='zip' id='zip' placeholder="Zip Code?" pattern="[0-9]{4}">
             <span class="material-icons input-icon" id='input-icon'>public</span>
             <span class="material-icons status"></span>
-            <p id='zip-error'></p>
+            <p class='err-msg' id='zip-error'></p>
           </div>
           <div class="form-item-container">
             <label for="password">Password</label>

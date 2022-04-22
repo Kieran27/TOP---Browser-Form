@@ -92,6 +92,7 @@ const App = {
         App.changeStatusIconError(statusIcon);
       } else {
         App.setVeryWeakPassword();
+        App.changeStatusIconCheck(statusIcon);
       }
     })
 
@@ -137,10 +138,13 @@ const App = {
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (name.validity.valid && email.validity.valid && zip.validity.valid && pass.validity.valid && passConfirm.validity.valid) {
+      if (form.checkValidity()) {
         console.log("Yes!")
+        alert("Well Done! Form's Submitted!")
+        // Play Animation
       } else {
         console.log("No!")
+        alert("Form Error")
       }
     })
   },
@@ -152,25 +156,31 @@ const App = {
 
     displayToggle.addEventListener('click', () => {
       document.querySelector('.circle').classList.toggle('translate');
+      document.querySelector('body').classList.toggle('dark-mode-body');
+      document.querySelector('.form-container').classList.toggle('dark-mode-form');
+      document.querySelectorAll('input').forEach(input => {
+        input.classList.toggle('dark-mode-input');
+      })
+      document.querySelector('select').classList.toggle('dark-mode-input');
     })
 
   },
 
   changeStatusIconCheck(statusIcon) {
     statusIcon.textContent = 'check_circle';
-    statusIcon.style.color = 'green';
+    statusIcon.style.color = 'var(--Success-Green)';
   },
 
   changeStatusIconError(statusIcon) {
     statusIcon.textContent = 'error';
-    statusIcon.style.color = 'red';
+    statusIcon.style.color = 'var(--Error-Red)';
   },
 
   setPasswordbarStrong() {
     const strengthBar = document.getElementById('strength-bar');
     const strengthBarText = document.getElementById('password-strength-text');
     strengthBar.style.width = '100%'
-    strengthBar.style.background = 'green';
+    strengthBar.style.background = 'var(--Success-Green)';
     strengthBarText.textContent = 'Strong'
   },
 
@@ -178,7 +188,7 @@ const App = {
     const strengthBar = document.getElementById('strength-bar');
     const strengthBarText = document.getElementById('password-strength-text');
     strengthBar.style.width = '60%'
-    strengthBar.style.background = 'yellow';
+    strengthBar.style.background = 'var(--Medium-Yellow)';
     strengthBarText.textContent = 'Average'
   },
 
@@ -186,7 +196,7 @@ const App = {
     const strengthBar = document.getElementById('strength-bar');
     const strengthBarText = document.getElementById('password-strength-text');
     strengthBar.style.width = '30%'
-    strengthBar.style.background = 'red';
+    strengthBar.style.background = 'var(--Error-Red)';
     strengthBarText.textContent = 'Weak'
   },
 
@@ -194,7 +204,7 @@ const App = {
     const strengthBar = document.getElementById('strength-bar');
     const strengthBarText = document.getElementById('password-strength-text');
     strengthBar.style.width = '0%'
-    strengthBar.style.background = 'red';
+    strengthBar.style.background = 'var(--Error-Red)';
     strengthBarText.textContent = 'Invalid Password!'
   },
 
