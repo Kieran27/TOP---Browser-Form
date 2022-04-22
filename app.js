@@ -69,18 +69,29 @@ const App = {
     pass.addEventListener('input', (e) => {
     // Define Regex to relay password strength to the user
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-    const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})");
-    const lowRegex = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})");
+    const mediumRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+    const lowRegex = new RegExp ("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})")
 
     const parent = e.target.parentElement;
     const errorMsg = document.getElementById('pass-error');
     const statusIcon = parent.querySelector('.status');
       if (strongRegex.test(pass.value)) {
         App.setPasswordbarStrong();
+        App.changeStatusIconCheck(statusIcon);
       } else if (mediumRegex.test(pass.value)) {
         App.setPasswordbarMedium();
-      } else if (mediumRegex.test(pass.value)) {
+        App.changeStatusIconCheck(statusIcon);
+      } else if (lowRegex.test(pass.value)) {
         App.setPasswordbarLow();
+        App.changeStatusIconCheck(statusIcon);
+      } else if (pass.validity.patternMismatch) {
+        App.setInvalidPassword();
+        App.changeStatusIconError(statusIcon);
+      } else if (pass.validity.valueMissing) {
+        App.setEmptyPassword();
+        App.changeStatusIconError(statusIcon);
+      } else {
+        App.setVeryWeakPassword();
       }
     })
 
@@ -110,6 +121,17 @@ const App = {
       } else if (target.textContent === 'visibility_off') {
         target.textContent = 'visibility';
         pass.type = 'password';
+      }
+    })
+
+    passConfirmToggle.addEventListener('click', (e) => {
+      let target = e.target;
+      if (target.textContent === 'visibility') {
+        target.textContent = 'visibility_off'
+        passConfirm.type = 'text';
+      } else if (target.textContent === 'visibility_off') {
+        target.textContent = 'visibility';
+        passConfirm.type = 'password';
       }
     })
 
@@ -168,9 +190,28 @@ const App = {
     strengthBarText.textContent = 'Weak'
   },
 
+  setInvalidPassword() {
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthBarText = document.getElementById('password-strength-text');
+    strengthBar.style.width = '0%'
+    strengthBar.style.background = 'red';
+    strengthBarText.textContent = 'Invalid Password!'
+  },
+
+  setVeryWeakPassword() {
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthBarText = document.getElementById('password-strength-text');
+    strengthBar.style.width = '20%'
+    strengthBarText.textContent = 'Very Weak'
+  },
+
+  setEmptyPassword() {
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthBarText = document.getElementById('password-strength-text');
+    strengthBar.style.width = '0'
+    strengthBarText.textContent = 'No Password'
+  }
+
 }
-
-
-
 
 App.init();
